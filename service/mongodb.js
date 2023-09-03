@@ -5,7 +5,7 @@ class MongoDBService {
 
     constructor() {
         // this.dbUrl = 'mongodb://localhost:27017';
-        this.dbUrl = "mongodb://127.0.0.1:27017";
+        this.dbUrl = "mongodb://story:o0HLSzinzBsG4fmlzO6lOBW2kkwpg7HvTtstamJViRdygYUkCFvfHFAHZLqqmYHdY8S4XaHSvD9tACDbOmFUsw==@story.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@story@";
         this.db = null;
         this.gfs = null;
         this.uploadGridFS = null;
