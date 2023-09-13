@@ -3,6 +3,7 @@ class memory{
     constructor(
         userID='',
         name='',
+        likeCount=0,
         like=[],
         text='',
         title='',
@@ -12,6 +13,7 @@ class memory{
     ){  
         this.userID=userID,
         this.name=name,
+        this.likeCount=likeCount,
         this.like=like,
         this.comment=comment,
         this.text=text,

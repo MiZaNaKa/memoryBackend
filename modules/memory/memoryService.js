@@ -198,6 +198,34 @@ class MemoryService{
        }
        return responseData
     }
+
+    async adminActionDetail(request){
+        var responseData = new ResponseData()
+       try{
+        var result=await MemoryDataprocessor.adminActionDetail(request)
+        responseData.getSuccessResponseData(result)
+       }
+       catch(e){
+        responseData.getFailResponseData(e)
+       }
+       return responseData
+    }
+
+    async getAuthorList(request){
+        var responseData = new ResponseData()
+       try{
+        var result=await MemoryDataprocessor.getAuthorList(request)
+        responseData.getSuccessResponseData(result)
+       }
+       catch(e){
+        responseData.getFailResponseData(e)
+       }
+       return responseData
+    }
+
+    
+
+    
     
 
 

@@ -92,6 +92,32 @@ router.post('/getMyStoryList',withAuth,async function (req, res, next) {
   }
 });
 
+router.post('/adminActionDetail',withAuth,async function (req, res, next) {
+  var ResponseData=new Response()
+  try{
+    var request=req.body
+    var result = await MemoryService.adminActionDetail(request)
+    res.json(result);
+  }
+  catch(e){
+    ResponseData.getServerErrorResponseData(e)
+  }
+});
+
+router.post('/getAuthorList',withAuth,async function (req, res, next) {
+  var ResponseData=new Response()
+  try{
+    var request=req.body
+    var result = await MemoryService.getAuthorList(request)
+    res.json(result);
+  }
+  catch(e){
+    ResponseData.getServerErrorResponseData(e)
+  }
+});
+
+
+
 router.post('/getStoryListAll',async function (req, res, next) {
   var ResponseData=new Response()
   try{

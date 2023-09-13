@@ -76,6 +76,58 @@ class memoryDataprocessor{
         return responseData
     }
 
+    async getAuthorList(request){
+        var responseData = new Response()
+        try{
+
+            var query={}
+            var sort = {};
+            if(request.search){
+                query.title={ $regex: request.search, $options: 'i' }
+            }
+
+            // if(request.status=='2'){
+            //     sort.likeCount=  -1;
+            // }
+            query.userID=request.id
+            query.status=2
+
+            console.log(query)
+            console.log(sort)
+            console.log(query)
+            
+
+            var result = await mongoDbService.db.collection('memory')
+            .find(query)
+            .toArray();
+            console.log(result)
+            console.log(result)
+            
+            // if(!request.search){
+            //     var result=await mongoDbService.db.collection('memory').find({"userID":request.id,"status":2}).toArray()
+            // }
+            // else{
+                
+            //     var result = await mongoDbService.db.collection('memory')
+            //     .find({
+            //         "userID":request.id,
+            //         "status":2,
+            //         'title': { $regex: request.search, $options: 'i' }
+            //     })
+            //     .toArray();
+            // }
+            
+            responseData.getSuccessResponseData(result)
+        }
+        catch(e){
+            responseData.getFailResponseData(e)
+        }
+        return responseData
+    }
+
+
+    
+
     async getStoryDetail(id){
         var responseData = new Response()
         try{
@@ -216,26 +268,24 @@ class memoryDataprocessor{
             
             var finMyDetailComment=find.like.filter(x=>x===request.userID)
             var total=find.like
-           
+            var totalCount=0
             if(finMyDetailComment.length==0){
                 total.push(request.userID)
-                
+                totalCount=find.likeCount+1
             }
             else{
                 var filter=total.filter(x=>x!==request.userID)
-                
+                totalCount=find.likeCount-1
                 total=filter
             }
-
            
-            
-            
             var updated=await mongoDbService.db.collection('memory')
             .updateOne(
                 { "_id": ObjectID(request.id) },
                 {
                     $set: {
-                        "like": total
+                        "like": total,
+                        "likeCount":totalCount
                     }
                 }
             );
@@ -464,6 +514,29 @@ class memoryDataprocessor{
             }
             
             responseData.getSuccessResponseData(result)
+        }
+        catch(e){
+            responseData.getFailResponseData(e)
+        }
+        return responseData
+    }
+
+    
+    async adminActionDetail(request){
+        var responseData = new Response()
+        try{
+            
+            var update = await mongoDbService.db.collection('memory')
+            .updateOne(
+                { "_id": ObjectID(request.storyID) },
+                {
+                    $set: {
+                        "status": request.stauts
+                    }
+                }
+            );
+            responseData.getSuccessResponseData(update)
+           
         }
         catch(e){
             responseData.getFailResponseData(e)
