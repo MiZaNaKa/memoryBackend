@@ -37,26 +37,26 @@ class memoryDataprocessor{
             
             if(!request.search){
                 if(request.status==='2'){
-                    request.status=3
+                    request.status=2
                 }
                 if(request.status==='1'){
                     request.status=1
                 }
                 if(request.status==='3'){
-                    request.status=2
+                    request.status=3
                 }
                 
                 var result=await mongoDbService.db.collection('memory').find({"userID":request.id,"status":request.status}).toArray()
             }
             else{
                 if(request.status==='2'){
-                    request.status=3
+                    request.status=2
                 }
                 if(request.status==='1'){
                     request.status=1
                 }
                 if(request.status==='3'){
-                    request.status=2
+                    request.status=3
                 }
                 
                 var result = await mongoDbService.db.collection('memory')
@@ -412,7 +412,7 @@ class memoryDataprocessor{
                     );
                 }
             }
-            var result=await mongoDbService.db.collection('memory').find({"userID":request._id,"status":1}).toArray()
+            var result=await mongoDbService.db.collection('memory').find({"userID":request._id,"status":2}).toArray()
                 
             responseData.getSuccessResponseData(result)
            
@@ -437,21 +437,25 @@ class memoryDataprocessor{
                     .deleteOne({ "_id": ObjectID(id)})
                 }
                 else{
+                    var updateStatus=0
                     if(request.status===3){
-                        request.status=4
+                        updateStatus=4
                     }
                     else if(request.status===4){
-                        request.status=1
+                        updateStatus=1
                     }
                     else{
-                        request.status=2
+                        updateStatus=2
                     }
+                    console.log(id)
+                    console.log(updateStatus)
+                    console.log(updateStatus)
                     var update = await mongoDbService.db.collection('memory')
                     .updateOne(
                         { "_id": ObjectID(id) },
                         {
                             $set: {
-                                "status": request.status
+                                "status":updateStatus
                             }
                         }
                     );

@@ -79,11 +79,14 @@ router.delete('/deleteComment/:id',withAuth,async function (req, res, next) {
 });
 
 
-router.post('/getMyStoryList',withAuth,async function (req, res, next) {
+router.post('/getMyStoryList',
+withAuth,
+async function (req, res, next) {
   var ResponseData=new Response()
   try{
     var request=req.body
     request.id=req.user._id
+    // request.id="64f44e886565b81670bd6330"
     var result = await MemoryService.getMyStoryList(request)
     res.json(result);
   }
@@ -132,11 +135,14 @@ router.post('/getStoryListAll',async function (req, res, next) {
 
 
 
-router.post('/myStoryMultipleAction',withAuth,async function (req, res, next) {
+router.post('/myStoryMultipleAction',
+  withAuth,
+  async function (req, res, next) {
   var ResponseData=new Response()
   try{
     var request=req.body
     request._id=req.user._id
+    // request._id="64f44e886565b81670bd6330"
     var result = await MemoryService.myStoryMultipleAction(request)
     res.json(result);
   }
