@@ -5,10 +5,10 @@ class MongoDBService {
 
     constructor() {
         // this.dbUrl = 'mongodb://localhost:27017';
-        this.dbUrl = "mongodb://story:o0HLSzinzBsG4fmlzO6lOBW2kkwpg7HvTtstamJViRdygYUkCFvfHFAHZLqqmYHdY8S4XaHSvD9tACDbOmFUsw==@story.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@story@";
-
-        // this.dbUrl='mongodb+srv://kkt:Password@cluster0.248sdag.mongodb.net/'
-        // this.dbUrl='mongodb+srv://memory:kktkkt2958@cluster0.77ngany.mongodb.net/'
+        // mongodb://pipe:gorqNLsayFFaz2AuUgQsIjYDhT7HlXS4xNqVIAuRKqPazIJQ4Tmy7ErPtKM652w1Es3wOsfg6CaKACDbrU0LCA==@pipe.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@pipe@
+        // this.dbUrl = "mongodb+srv://KhinKhinThant:kktkkt295810@cluster0.ccbic.mongodb.net/";
+        // this.dbUrl ='mongodb://pipe:gorqNLsayFFaz2AuUgQsIjYDhT7HlXS4xNqVIAuRKqPazIJQ4Tmy7ErPtKM652w1Es3wOsfg6CaKACDbrU0LCA==@pipe.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@pipe@'
+        this.dbUrl = 'mongodb+srv://platsadmin:66Gateway@cluster0.lj2q0mg.mongodb.net/Plats';
         this.db = null;
         this.gfs = null;
         this.uploadGridFS = null;
@@ -17,7 +17,7 @@ class MongoDBService {
 
     async start() {
         try {
-            await this.connect(this.dbUrl,{ useNewUrlParser: true});
+            await this.connect(this.dbUrl);
             // logger.info('connected to Mongodb.');  
             console.log('connected to Mongodb.');       
         }
@@ -30,7 +30,7 @@ class MongoDBService {
     async connect(url){
         var con = await mongoClient.connect(url, {useNewUrlParser: true, useUnifiedTopology: true });
 
-        this.db = con.db('story');  
+        this.db = con.db('Plats');  
     }
 
 
