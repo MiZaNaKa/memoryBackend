@@ -19,12 +19,17 @@ class userDataprocessor{
     async checkEmail(email){
         var responseData = new Response()
         try{
+            console.log(email)
+            console.log(email)
             var result=await mongoDbService.db.collection('users').find({"email":email}).toArray()
             console.log(result)
             console.log(result)
             responseData.getSuccessResponseData(result)
         }
         catch(e){
+            console.log(e.message)
+            console.log(e)
+            console.log(e)
             responseData.getServerErrorResponseData(e)
         }
         return responseData

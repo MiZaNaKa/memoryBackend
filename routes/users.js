@@ -63,12 +63,13 @@ router.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   async (req, res) =>{
     console.log(req)
-    console.log(req)
+    console.log(req.user.userInfo)
     console.log(req)
    
     if(req.user.isExist){
       var jwt=await jwtHelper.generateToken(req.user.userInfo)
-      
+      console.log(jwt)
+      console.log(jwt)
       res.redirect('http://localhost:3006/SuccessfullyLogin/'+jwt);
     }
     else{

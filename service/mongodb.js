@@ -5,8 +5,9 @@ class MongoDBService {
 
     constructor() {
         // this.dbUrl = 'mongodb://localhost:27017';
-        this.dbUrl = "mongodb://story:o0HLSzinzBsG4fmlzO6lOBW2kkwpg7HvTtstamJViRdygYUkCFvfHFAHZLqqmYHdY8S4XaHSvD9tACDbOmFUsw==@story.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@story@";
-
+        // this.dbUrl = "mongodb://story:o0HLSzinzBsG4fmlzO6lOBW2kkwpg7HvTtstamJViRdygYUkCFvfHFAHZLqqmYHdY8S4XaHSvD9tACDbOmFUsw==@story.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@story@";
+        this.dbUrl = "mongodb+srv://khinlaymerryshall:kkTkkT123@cluster0.p6rfzk1.mongodb.net/";
+        
         // this.dbUrl='mongodb+srv://kkt:Password@cluster0.248sdag.mongodb.net/'
         // this.dbUrl='mongodb+srv://memory:kktkkt2958@cluster0.77ngany.mongodb.net/'
         this.db = null;
