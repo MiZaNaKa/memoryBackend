@@ -191,6 +191,7 @@ router.post('/sendComment',withAuth,async function (req, res, next) {
 router.post('/myStoryListStatus',withAuth,async function (req, res, next) {
   var ResponseData=new Response()
   try{
+    
     var request=req.body
     request.customerID=req.user._id
     request.name=req.user.name
@@ -202,6 +203,24 @@ router.post('/myStoryListStatus',withAuth,async function (req, res, next) {
     ResponseData.getServerErrorResponseData(e)
   }
 });
+
+router.post('/adminStoryListStatus',withAuth,async function (req, res, next) {
+  var ResponseData=new Response()
+  try{
+    
+    var request=req.body
+    request.customerID=req.user._id
+    request.name=req.user.name
+    var result = await MemoryService.adminStoryListStatus(request)
+    console.log(result)
+    res.json(result);
+  }
+  catch(e){
+    ResponseData.getServerErrorResponseData(e)
+  }
+});
+
+
 
 
 router.post('/queryStatus',withAuth,async function (req, res, next) {

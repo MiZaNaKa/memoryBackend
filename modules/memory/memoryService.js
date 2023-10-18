@@ -224,6 +224,17 @@ class MemoryService{
     }
 
     
+    async adminStoryListStatus(request){
+        var responseData = new ResponseData()
+       try{
+        var result=await MemoryDataprocessor.adminStoryListStatus(request)
+        responseData.getSuccessResponseData(result)
+       }
+       catch(e){
+        responseData.getFailResponseData(e)
+       }
+       return responseData
+    }
 
     
     

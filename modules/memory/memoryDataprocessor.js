@@ -306,6 +306,7 @@ class memoryDataprocessor{
         try{
             var find=await mongoDbService.db.collection('memory').findOne({"_id":ObjectId(request.id) })
             
+            
            
             if(find.userID === request.customerID){
                 
@@ -325,6 +326,8 @@ class memoryDataprocessor{
                     .deleteOne({ "_id": ObjectID(request.id)})
                 }
                 else if(request.status==='7'){
+                    console.log("hello")
+                    console.log("hello")
                     var updated=await mongoDbService.db.collection('memory')
                     .updateOne(
                         { "_id": ObjectID(request.id) },
@@ -339,6 +342,70 @@ class memoryDataprocessor{
            
            
             var result=await mongoDbService.db.collection('memory').find({"userID":request.customerID,"status":1}).toArray()
+                
+            responseData.getSuccessResponseData(result)
+           
+        }
+        catch(e){
+            responseData.getFailResponseData(e)
+        }
+        return responseData
+    }
+
+    
+    async adminStoryListStatus(request){
+        var responseData = new Response()
+        try{
+            var find=await mongoDbService.db.collection('memory').findOne({"_id":ObjectId(request.id) })
+            
+            console.log(request.status)
+            console.log(request.status)
+            
+           
+            if(request.status==='5'){
+                var updated=await mongoDbService.db.collection('memory')
+                .updateOne(
+                    { "_id": ObjectID(request.id) },
+                    {
+                        $set: {
+                            "status": 3
+                        }
+                    }
+                );
+            }
+            else if(request.status==='4'){
+                var updated=await mongoDbService.db.collection('memory')
+                .deleteOne({ "_id": ObjectID(request.id)})
+            }
+            else if(request.status==='7'){
+                console.log("hello")
+                console.log("hello")
+                var updated=await mongoDbService.db.collection('memory')
+                .updateOne(
+                    { "_id": ObjectID(request.id) },
+                    {
+                        $set: {
+                            "status": 1
+                        }
+                    }
+                );
+            }
+            else if(request.status==='1'){
+                console.log("hello")
+                console.log("hello")
+                var updated=await mongoDbService.db.collection('memory')
+                .updateOne(
+                    { "_id": ObjectID(request.id) },
+                    {
+                        $set: {
+                            "status": 2
+                        }
+                    }
+                );
+            }
+           
+           
+            var result=await mongoDbService.db.collection('memory').find({"status":1}).toArray()
                 
             responseData.getSuccessResponseData(result)
            
