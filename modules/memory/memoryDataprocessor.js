@@ -356,8 +356,7 @@ class memoryDataprocessor{
     async adminStoryListStatus(request){
         var responseData = new Response()
         try{
-            var find=await mongoDbService.db.collection('memory').findOne({"_id":ObjectId(request.id) })
-            
+                        
             console.log(request.status)
             console.log(request.status)
             
@@ -368,7 +367,7 @@ class memoryDataprocessor{
                     { "_id": ObjectID(request.id) },
                     {
                         $set: {
-                            "status": 3
+                            "status": 4
                         }
                     }
                 );
