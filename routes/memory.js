@@ -86,7 +86,7 @@ async function (req, res, next) {
   try{
     var request=req.body
     request.id=req.user._id
-    // request.id="64f44e886565b81670bd6330"
+    // request.id="652ce56ceb471f05c6f8838f"
     var result = await MemoryService.getMyStoryList(request)
     res.json(result);
   }
